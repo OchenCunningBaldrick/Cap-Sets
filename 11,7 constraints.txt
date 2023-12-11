@@ -1,0 +1,9 @@
+for u in combinations(range(m),t):
+    constraints.append([var_label(u,u[0]),var_label(u,u[1])])
+    constraints.append([-var_label(u,u[0]),-var_label(u,u[1])])
+    constraints.append([var_label(u,u[3]),var_label(u,u[4]),var_label(u,u[5])])
+    constraints.append([-var_label(u,u[3]),-var_label(u,u[4]),-var_label(u,u[5])])
+    if u[2]<7:
+        constraints.append([var_label(u,u[2])])
+    if u[3]<7:
+        constraints.append([-var_label(u,u[3])])

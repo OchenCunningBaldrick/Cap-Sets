@@ -1,0 +1,44 @@
+import math
+from itertools import *
+from sys import *
+from collections import *
+
+m = int(input('Dimension: '))
+
+
+# Enter the candidate set as a list of lists separated by commas, e.g. S = [[0,1], [2,0]]
+S = []
+
+
+pair_count = 0
+naughty_pair=[]
+
+for x,y in permutations(S,2):
+    for i in range(m):
+        if x[i]==0 and y[i] != 0:
+            break
+    else: 
+        naughty_pair.append([x,y])
+        pair_count = pair_count + 1
+
+print('The following vectors do not satisfy the pairwise condition for admissible',naughty_pair)
+print('There are',pair_count,'pairs which don\'t satisfy the admissible condition')
+
+
+triple_count = 0
+naughty_triple=[]
+
+for x,y,z in combinations(S,3):
+    for i in range(m):
+        if (x[i]==1 and y[i]==0 and z[i]==0) or (x[i]==0 and y[i]==1 and z[i]==0) or (x[i]==0 and y[i]==0 and z[i]==1):
+            break
+        if (x[i]==2 and y[i]==0 and z[i]==0) or (x[i]==0 and y[i]==2 and z[i]==0) or (x[i]==0 and y[i]==0 and z[i]==2):
+            break
+        if (x[i]==2 and y[i]==1 and z[i]==0) or (x[i]==2 and y[i]==0 and z[i]==1) or (x[i]==1 and y[i]==2 and z[i]==0) or (x[i]==1 and y[i]==0 and z[i]==2) or (x[i]==0 and y[i]==1 and z[i]==2) or (x[i]==0 and y[i]==2 and z[i]==1):
+            break
+    else: 
+        naughty_triple.append([x,y,z])
+        triple_count = triple_count + 1
+
+print('The following vectors do not satisfy the triples condition for admissible',naughty_triple)
+print('There are',triple_count,'triples which don\'t satisfy the admissible condition')
